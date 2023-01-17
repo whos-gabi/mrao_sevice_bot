@@ -1,5 +1,5 @@
 # MRAO Telegram Bot
-### Way of work:
+### The way it works:
 Bot is accessing http://asp.gov.md api to find the most recent date of an appointment.
 
 ### asp.gov.md API:
