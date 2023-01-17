@@ -171,6 +171,7 @@ bot.onText(/\/start/, async (message) => {
 
 bot.on("callback_query", async (callbackQuery) => {
   const chatId = callbackQuery.message.chat.id;
+  const messageId = callbackQuery.message.message_id;
   const pickedOptionId = callbackQuery.data;
   try {
     if (await getOption(pickedOptionId, options)) {
@@ -214,6 +215,7 @@ bot.on("callback_query", async (callbackQuery) => {
     console.log(err);
     bot.sendMessage(chatId, "An error occurred");
   }
+  bot.deleteMessage(chatId, messageId)
 });
 //get city_id
 async function getCityId(option_id, chatId) {
