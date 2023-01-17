@@ -58,8 +58,8 @@ const options = [
 ];
 ```
 
-Then it's sending a GET request on this endpoint:
-``https://programaredl.asp.gov.md/qwebbook/rest/schedule/services/{option_id}/branches``
+Then it's sending a GET request on this endpoint, with the <b>category_id</b> chosen by the user:
+``https://programaredl.asp.gov.md/qwebbook/rest/schedule/services/{category_id}/branches``
 
 The response is then mapped into a list of city and city id's: 
 ``options_city_list.push({ option: data.addressCity, id: data.id });``
@@ -67,4 +67,28 @@ The response is then mapped into a list of city and city id's:
 After the user selected preferred category and city the code executed the following GET request to get a list of available dates for appointment:
 ``https://programaredl.asp.gov.md/qwebbook/rest/schedule/branches/{city_id}/services/{category_id}/dates``
 
+### Setup and Instalation:
+
+! Make sure you have node.js installed
+
+Linux/Mac OS:
+
+Git clone the code:
+```sh
+git clone https://github.com/whos-gabi/mrao_sevice_bot.git
+```
+
+Init node_modules:
+```sh
+npm i --save
+```
+
+Start the code:
+```sh
+nodemon index.js 
+```
+Or
+```sh
+node index.js
+```
 
