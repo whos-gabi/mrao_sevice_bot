@@ -69,14 +69,16 @@ After the user selected preferred category and city the code executed the follow
 
 ### Setup and Instalation:
 
-! Make sure you have node.js installed
+<b>Make sure you have node.js installed</b>
 
-Linux/Mac OS:
+<u>Linux/Mac OS:</u>
 
 Git clone the code:
 ```sh
 git clone https://github.com/whos-gabi/mrao_sevice_bot.git
 ```
+
+Replace your token from @BotFather in `.env` file
 
 Init node_modules:
 ```sh
@@ -87,8 +89,9 @@ Start the code:
 ```sh
 nodemon index.js 
 ```
-Or
+or
 ```sh
 node index.js
 ```
+
 
