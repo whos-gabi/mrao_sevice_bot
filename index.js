@@ -110,8 +110,8 @@ bot.onText(/\/date/, async (message) => {
   let chatId = message.chat.id;
 
   if (sel_category_id && sel_city_id) {
-    let data = await getDate(sel_city_id, sel_category_id, BASE_BRANCH_URL);
-    bot.sendMessage(chatId, "Ultima data disponibila este: " + data);
+    let date = await getDate(sel_city_id, sel_category_id, BASE_BRANCH_URL);
+    bot.sendMessage(chatId, "Ultima data disponibila este: " + formatDate(date));
   } else {
     bot.sendMessage(
       chatId,
@@ -184,6 +184,7 @@ bot.on("callback_query", async (callbackQuery) => {
       sel_category = pickedOption;
       //
       await getCityId(pickedOptionId, chatId);
+      bot.deleteMessage(chatId, messageId)
     } else if (await getOption(pickedOptionId, options_city_list)) {
       //if makes part of the city options
       let pickedOption = await getOption(pickedOptionId, options_city_list);
@@ -207,15 +208,16 @@ bot.on("callback_query", async (callbackQuery) => {
       );
       //start date subscription
       appointmentChecker(chatId, sel_city_id, sel_category_id);
+      bot.deleteMessage(chatId, messageId)
     } else {
       //if something is wrong
       bot.sendMessage(chatId, `Ceva nu a mers bine :(`);
+      bot.deleteMessage(chatId, messageId)
     }
   } catch (err) {
     console.log(err);
     bot.sendMessage(chatId, "An error occurred");
   }
-  bot.deleteMessage(chatId, messageId)
 });
 //get city_id
 async function getCityId(option_id, chatId) {
