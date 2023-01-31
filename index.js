@@ -251,7 +251,7 @@ function appointmentChecker(chatId, city_id, category_id) {
         `${formatDate(date)} este noua data disponibila la MRAO.`
       );
     }
-  }, 60 * 1000 * 1); // 1 minutes
+  }, 60 * 1000 * 3); // 3 minutes
 }
 
 async function getBaseUrlResp(id, BASE_SERV_URL, SUFIX) {
@@ -274,7 +274,7 @@ async function getDate(city_id, category_id, BASE_BRANCH_URL) {
   console.log("URL:  " + url);
   try {
     let res = await axios.get(url);
-    console.log("Available dates: ", res.data);
+    console.log("date: ", res.data[0].date);
     return res.data[0].date;
   } catch (err) {
     console.log(err);
