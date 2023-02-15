@@ -175,7 +175,7 @@ bot.on("callback_query", async (callbackQuery) => {
 
       let pickedOption = await getOption(pickedOptionId, options);
       bot.sendMessage(chatId, `Ati ales categoria: ${pickedOption}`);
-      console.log(`Ati ales categoria: ${pickedOption} \n id: ${pickedOptionId}`);
+      console.log(`Ati ales categoria: ${pickedOption}`);
       //define variables
       sel_category_id = pickedOptionId;
       sel_category = pickedOption;
@@ -189,7 +189,7 @@ bot.on("callback_query", async (callbackQuery) => {
       sel_city_id = pickedOptionId;
       sel_city = pickedOption;
       bot.sendMessage(chatId, `Ati ales orasul: ${pickedOption}`);
-      console.log(`Ati ales orasul: ${pickedOption} \n id: ${pickedOptionId}`);
+      console.log(`Ati ales orasul: ${pickedOption}`);
       //get date
       current_date = await getDate(
         sel_city_id,
