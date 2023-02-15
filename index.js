@@ -133,10 +133,6 @@ bot.on("message", async (msg) => {
       "Se pare ca acest mesaj nu este o comanda valida. Incearca /help."
     );
   }
-  // if (current_date != "" && sel_city_id && sel_category_id) {
-  //   appointmentChecker(chatId, sel_city_id, sel_category_id);
-  //   console.log("subscribtion active...");
-  // }
 });
 
 //---------------START CONFIGURATION----------------
@@ -179,6 +175,7 @@ bot.on("callback_query", async (callbackQuery) => {
 
       let pickedOption = await getOption(pickedOptionId, options);
       bot.sendMessage(chatId, `Ati ales categoria: ${pickedOption}`);
+      console.log(`Ati ales categoria: ${pickedOption} \n id: ${pickedOptionId}`);
       //define variables
       sel_category_id = pickedOptionId;
       sel_category = pickedOption;
@@ -192,6 +189,7 @@ bot.on("callback_query", async (callbackQuery) => {
       sel_city_id = pickedOptionId;
       sel_city = pickedOption;
       bot.sendMessage(chatId, `Ati ales orasul: ${pickedOption}`);
+      console.log(`Ati ales orasul: ${pickedOption} \n id: ${pickedOptionId}`);
       //get date
       current_date = await getDate(
         sel_city_id,
@@ -244,7 +242,7 @@ function appointmentChecker(chatId, city_id, category_id) {
   timer = setInterval(async () => {
     let date = await getDate(city_id, category_id, BASE_BRANCH_URL);
     if (date !== current_date) {
-      console.log("new date found");
+      console.log("--- NEW DATE FOUND");
       current_date = date;
       bot.sendMessage(
         chatId,
@@ -268,10 +266,10 @@ async function getBaseUrlResp(id, BASE_SERV_URL, SUFIX) {
 async function getDate(city_id, category_id, BASE_BRANCH_URL) {
   //DEBUG
   console.log("fetching date...");
-  console.log("city_id: " + city_id);
-  console.log("category_id: " + category_id);
+  // console.log("city_id: " + city_id);
+  // console.log("category_id: " + category_id);
   let url = BASE_BRANCH_URL + city_id + "/services/" + category_id + "/dates";
-  console.log("URL:  " + url);
+  // console.log("URL:  " + url);
   try {
     let res = await axios.get(url);
     console.log("date: ", res.data[0].date);
